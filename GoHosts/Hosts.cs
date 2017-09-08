@@ -84,5 +84,12 @@ namespace GoHosts
             File.Move(hostsFile, HOSTS_SYS);
             return true;
         }
+
+        public FileInfo GetSystemHostsInfo()
+        {
+            return new FileInfo(HOSTS_SYS);
+        }
+
+
     }
 }
