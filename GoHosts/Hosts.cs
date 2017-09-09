@@ -8,7 +8,9 @@ namespace GoHosts
     {
         public static readonly string[] DEFAULT_URLS =
         {
-            "https://raw.githubusercontent.com/justin-qingshan/hosts/master/hosts-files/hosts"
+            "https://raw.githubusercontent.com/justin-qingshan/GoHosts/master/hosts/hosts-pc-wangchunming",
+            "#https://raw.githubusercontent.com/justin-qingshan/GoHosts/master/hosts/hosts-googlehosts",
+            "#https://raw.githubusercontent.com/justin-qingshan/GoHosts/master/hosts/hosts-play-sy618"
         };
 
         public static readonly string PATH_ROOT = AppDomain.CurrentDomain.BaseDirectory;
