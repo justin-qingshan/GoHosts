@@ -35,9 +35,9 @@
             // 
             // update
             // 
-            this.update.Location = new System.Drawing.Point(15, 66);
+            this.update.Location = new System.Drawing.Point(15, 61);
             this.update.Name = "update";
-            this.update.Size = new System.Drawing.Size(75, 23);
+            this.update.Size = new System.Drawing.Size(75, 21);
             this.update.TabIndex = 0;
             this.update.Text = "update";
             this.update.UseVisualStyleBackColor = true;
@@ -46,8 +46,8 @@
             // Label_LastUpdate
             // 
             this.Label_LastUpdate.AutoSize = true;
-            this.Label_LastUpdate.Font = new System.Drawing.Font("Microsoft YaHei", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_LastUpdate.Location = new System.Drawing.Point(12, 9);
+            this.Label_LastUpdate.Font = new System.Drawing.Font("微软雅黑", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label_LastUpdate.Location = new System.Drawing.Point(12, 8);
             this.Label_LastUpdate.Name = "Label_LastUpdate";
             this.Label_LastUpdate.Size = new System.Drawing.Size(100, 16);
             this.Label_LastUpdate.TabIndex = 2;
@@ -56,8 +56,8 @@
             // Label_Size
             // 
             this.Label_Size.AutoSize = true;
-            this.Label_Size.Font = new System.Drawing.Font("Microsoft YaHei", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_Size.Location = new System.Drawing.Point(12, 27);
+            this.Label_Size.Font = new System.Drawing.Font("微软雅黑", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label_Size.Location = new System.Drawing.Point(12, 25);
             this.Label_Size.Name = "Label_Size";
             this.Label_Size.Size = new System.Drawing.Size(61, 16);
             this.Label_Size.TabIndex = 2;
@@ -65,14 +65,14 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(284, 241);
             this.Controls.Add(this.Label_Size);
             this.Controls.Add(this.Label_LastUpdate);
             this.Controls.Add(this.update);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "GoHosts";
             this.ResumeLayout(false);
             this.PerformLayout();
 
