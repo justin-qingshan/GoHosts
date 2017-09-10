@@ -29,10 +29,14 @@ namespace GoHosts
             loading.ShowLoading(this);
         }
 
-        private void HideLoading(object str)
+        private void HideLoading()
         {
             loading.Hide();
-            MessageBox.Show(str + "完成!");
+        }
+
+        private void UpdateLoading(string str)
+        {
+            loading.Text = str;
         }
 
         private void UpdateInfo()
@@ -52,9 +56,26 @@ namespace GoHosts
 
             Task task = new Task(()=>
             {
+                context.Post((obj) =>
+                {
+                    UpdateLoading("下载hosts中");
+                }, "");
                 string hosts = new Hosts().GetHostsFile();
+                //Thread.Sleep(10000);
+
+
+                context.Post((obj) =>
+                {
+                    UpdateLoading("整合hosts中");
+                }, "");
+                //Thread.Sleep(5000);
                 new Hosts().ReplaceSystemHosts(hosts);
-                context.Post(HideLoading, "更新");
+
+                context.Post((obj) => {
+                    HideLoading();
+                    UpdateInfo();
+                    MessageBox.Show("更新完成");
+                }, "");
             });
 
             task.Start();

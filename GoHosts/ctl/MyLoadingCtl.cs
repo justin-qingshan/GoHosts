@@ -9,7 +9,7 @@ namespace GoHosts.ctl
     {
         private bool _transparentBG = true;
         private int _alpha = 125;
-        private string label = "正在加载中...";
+        private string _label = "正在加载中...";
 
         private SolidBrush fontBrush = new SolidBrush(Color.FromArgb(206, 94, 94, 94));
 
@@ -30,8 +30,8 @@ namespace GoHosts.ctl
                 pictureBox.BackColor = Color.White;
                 pictureBox.Image = Properties.Resources.loading;
                 pictureBox.Name = "picturebox_loading";
-                pictureBox.Size = new Size(4, 4);
-                pictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
+                pictureBox.Size = new Size(32, 32);
+                pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
                 Point location = new Point(Location.X + (Width - pictureBox.Width) / 2,
                     Location.Y + (Height - pictureBox.Height) / 2);
                 pictureBox.Location = location;
@@ -96,7 +96,7 @@ namespace GoHosts.ctl
             vlblControlHeight = Size.Height;
             e.Graphics.DrawRectangle(labelBorderPen, 0, 0, vlblControlWidth, vlblControlHeight);
             e.Graphics.FillRectangle(labelBackColorBrush, 0, 0, vlblControlWidth, vlblControlHeight);
-            e.Graphics.DrawString(label, new Font("黑体", 10), fontBrush, vlblControlWidth / 2 - 30, vlblControlHeight / 2 + 40);
+            e.Graphics.DrawString(_label, new Font("黑体", 10), fontBrush, vlblControlWidth / 2 - 30, vlblControlHeight / 2 + 40);
         }
 
 
@@ -124,6 +124,13 @@ namespace GoHosts.ctl
                 _alpha = value;
                 Invalidate();
             }
+        }
+
+
+        public string Text
+        {
+            get { return _label; }
+            set { _label = value; Invalidate(); }
         }
 
     }
