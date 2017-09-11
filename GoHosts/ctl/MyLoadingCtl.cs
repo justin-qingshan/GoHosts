@@ -17,6 +17,10 @@ namespace GoHosts.ctl
         private PictureBox pic;
         private Label label;
 
+
+        private int _height_total = 0;
+        private int _width_total = 0;
+
         public MyLoadingCtl() : this(125, true)
         {
         }
@@ -111,6 +115,13 @@ namespace GoHosts.ctl
                 return cp;
             }
         }
+
+        protected override void OnInvalidated(InvalidateEventArgs e)
+        {
+            pic.Invalidate();
+            base.OnInvalidated(e);
+        }
+
 
         public bool TransparentBG
         {
