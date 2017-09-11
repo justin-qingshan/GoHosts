@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Diagnostics;
 
-namespace GoHosts
+namespace GoHosts.util
 {
     public class FileUtil
     {
@@ -68,7 +69,9 @@ namespace GoHosts
             return true;
         }
 
-        public static bool CombineStr(string outputFile, List<string> inputFiles)
+
+        
+        public static bool CombineStr(string outputFile, List<string> inputFiles, Action<int> handler)
         {
             if (string.IsNullOrEmpty(outputFile))
                 throw new ArgumentNullException("outputFile cannot be null.");
@@ -78,8 +81,12 @@ namespace GoHosts
 
             using (StreamWriter stream = new StreamWriter(File.Create(outputFile)))
             {
+                int index = 0;
                 foreach (string input in inputFiles)
                 {
+                    index++;
+                    handler?.Invoke(index);
+
                     if (string.IsNullOrEmpty(input) || !File.Exists(input))
                         continue;
 
@@ -96,6 +103,17 @@ namespace GoHosts
             return true;
         }
 
+
+
+        public static void MoveByCmd(string sourcePath, string dstPath, bool useAdmin = false)
+        {
+            ProcessStartInfo start = new ProcessStartInfo();
+            start.Arguments = string.Format("move '{0}' '{1}'", sourcePath, dstPath);
+            start.Verb = "runas";
+
+            Process.Start(start);
+        }
+        
 
     }
 }

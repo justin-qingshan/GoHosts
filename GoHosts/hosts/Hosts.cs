@@ -1,8 +1,9 @@
-﻿using System;
+﻿using GoHosts.util;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace GoHosts
+namespace GoHosts.hosts
 {
     public class Hosts
     {
@@ -18,15 +19,15 @@ namespace GoHosts
         public static readonly string FOLDER_TMP = PATH_ROOT + "tmp/";
         public static readonly string FILE_SOURCES = PATH_ROOT + "sources.txt";
 
-        public static readonly string HOSTS_SYS = Environment.SystemDirectory + "/drivers/etc/hosts";
-        public static readonly string HOSTS_SYS_BAK = HOSTS_SYS + "-bak";
+        public static readonly string HOSTS_SYS = Path.Combine(Environment.SystemDirectory + "/drivers/etc/hosts");
+        public static readonly string HOSTS_SYS_BAK = HOSTS_SYS + ".bak";
 
 
         static Hosts()
         {
             if (!File.Exists(FILE_SOURCES))
             {
-                using(StreamWriter writer = new StreamWriter(File.Create(FILE_SOURCES)))
+                using (StreamWriter writer = new StreamWriter(File.Create(FILE_SOURCES)))
                 {
                     foreach (string url in DEFAULT_URLS)
                         writer.WriteLine(url);
@@ -35,7 +36,8 @@ namespace GoHosts
             }
         }
 
-        public string GetHostsFile()
+
+        public List<string> GetHostsFiles(Action<int> progress)
         {
             if (Directory.Exists(FOLDER_TMP))
                 Directory.Delete(FOLDER_TMP, true);
@@ -47,26 +49,36 @@ namespace GoHosts
             using (StreamReader reader = new StreamReader(new FileStream(FILE_SOURCES, FileMode.Open)))
             {
                 string str = reader.ReadLine();
-                while(str != null)
+                while (str != null)
                 {
                     if (!str.StartsWith("#"))
                         urls.Add(str);
-               
+
                     str = reader.ReadLine();
                 }
             }
 
             List<string> files = new List<string>();
-            foreach(string url in urls)
+            int index = 0;
+            foreach (string url in urls)
             {
+                index++;
                 string file = FOLDER_TMP + DateTime.Now.ToString("mm-ss") + ".txt";
                 if (HttpUtil.DownloadFile(url, file))
                     files.Add(file);
+
+                progress?.Invoke(index);
             }
 
+            return files;
+        }
 
-            string outputFile = FOLDER_TMP + "hosts.txt";
-            FileUtil.CombineStr(outputFile, files);
+
+        
+        public string CombineHosts(List<string> files, Action<int> progress)
+        {
+            string outputFile = FOLDER_TMP + "hosts";
+            FileUtil.CombineStr(outputFile, files, progress);
 
             return outputFile;
         }
@@ -83,15 +95,26 @@ namespace GoHosts
             if (File.Exists(HOSTS_SYS))
                 File.Move(HOSTS_SYS, HOSTS_SYS_BAK);
 
-            File.Move(hostsFile, HOSTS_SYS);
+            File.Copy(hostsFile, HOSTS_SYS);
             return true;
         }
+
+
+
+        public bool CleanTmpFiles()
+        {
+            if (Directory.Exists(FOLDER_TMP))
+                Directory.Delete(FOLDER_TMP, true);
+
+            return true;
+        }
+
+
 
         public FileInfo GetSystemHostsInfo()
         {
             return new FileInfo(HOSTS_SYS);
         }
-
 
     }
 }

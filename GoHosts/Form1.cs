@@ -1,4 +1,5 @@
 ﻿using GoHosts.ctl;
+using GoHosts.hosts;
 using System;
 using System.ComponentModel;
 using System.IO;
@@ -10,11 +11,11 @@ namespace GoHosts
 {
     public partial class Form1 : Form
     {
-
-        MyLoadingCtl loading = new MyLoadingCtl(128, true);
+        
         BackgroundWorker background = new BackgroundWorker();
 
         SynchronizationContext context = null;
+        Loading loading = new Loading();
 
         public Form1()
         {
@@ -36,16 +37,17 @@ namespace GoHosts
 
         private void UpdateLoading(string str)
         {
-            loading.Text = str;
+            loading.LoadingMsg = str;
         }
 
         private void UpdateInfo()
         {
             FileInfo info = new Hosts().GetSystemHostsInfo();
 
-            Label_LastUpdate.Text = "上次更新时间：" + info.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss");
+            Label_LastUpdate.Text = info.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss");
             double size = Math.Round((double)info.Length / 1024, 2);
-            Label_Size.Text = "hosts文件大小：" + size + "KB";
+            Label_Size.Text = size + "KB";
+            Label_Location.Text = Hosts.HOSTS_SYS.Replace('\\', '/');
         }
 
 
@@ -56,20 +58,27 @@ namespace GoHosts
 
             Task task = new Task(()=>
             {
+                //HostsUtil.UpdateHosts(null, null, null, () =>
+                //{
+                //    HideLoading();
+                //    UpdateInfo();
+                //    MessageBox.Show("更新完成");
+                //});
+
                 context.Post((obj) =>
                 {
                     UpdateLoading("下载hosts中");
                 }, "");
-                string hosts = new Hosts().GetHostsFile();
-                //Thread.Sleep(10000);
+                //string hosts = new Hosts().GetHostsFile();
+                Thread.Sleep(10000);
 
 
                 context.Post((obj) =>
                 {
                     UpdateLoading("整合hosts中");
                 }, "");
-                //Thread.Sleep(5000);
-                new Hosts().ReplaceSystemHosts(hosts);
+                Thread.Sleep(5000);
+                //new Hosts().ReplaceSystemHosts(hosts);
 
                 context.Post((obj) => {
                     HideLoading();
@@ -80,8 +89,6 @@ namespace GoHosts
 
             task.Start();
         }
-
-        delegate void UpdateUI();
         
 
         private void Form1_SizeChanged(object sender, EventArgs e)

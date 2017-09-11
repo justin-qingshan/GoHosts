@@ -2,7 +2,7 @@
 using System.IO;
 using System.Net;
 
-namespace GoHosts
+namespace GoHosts.util
 {
     public class HttpUtil
     {
