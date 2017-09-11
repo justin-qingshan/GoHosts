@@ -82,10 +82,12 @@ namespace GoHosts
         }
 
         delegate void UpdateUI();
+        
 
-        private void label2_Click(object sender, EventArgs e)
+        private void Form1_SizeChanged(object sender, EventArgs e)
         {
-
+            if (loading != null && loading.Visible)
+                loading.Invalidate();
         }
     }
 }

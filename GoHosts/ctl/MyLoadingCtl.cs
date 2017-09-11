@@ -9,11 +9,13 @@ namespace GoHosts.ctl
     {
         private bool _transparentBG = true;
         private int _alpha = 125;
-        private string _label = "正在加载中...";
+        private string _msg = "正在加载中...";
 
         private SolidBrush fontBrush = new SolidBrush(Color.FromArgb(206, 94, 94, 94));
 
         private Container components = new Container();
+        private PictureBox pic;
+        private Label label;
 
         public MyLoadingCtl() : this(125, true)
         {
@@ -26,17 +28,17 @@ namespace GoHosts.ctl
             _alpha = alpha;
             if (showLoadingImage)
             {
-                PictureBox pictureBox = new PictureBox();
-                pictureBox.BackColor = Color.White;
-                pictureBox.Image = Properties.Resources.loading;
-                pictureBox.Name = "picturebox_loading";
-                pictureBox.Size = new Size(32, 32);
-                pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
-                Point location = new Point(Location.X + (Width - pictureBox.Width) / 2,
-                    Location.Y + (Height - pictureBox.Height) / 2);
-                pictureBox.Location = location;
-                pictureBox.Anchor = AnchorStyles.None;
-                Controls.Add(pictureBox);
+                pic = new PictureBox();
+                pic.BackColor = Color.White;
+                pic.Image = Properties.Resources.loading;
+                pic.Name = "picturebox_loading";
+                pic.Size = new Size(32, 32);
+                pic.SizeMode = PictureBoxSizeMode.Zoom;
+                Point location = new Point(Location.X + (Width - pic.Width) / 2,
+                    Location.Y + (Height - pic.Height) / 2);
+                pic.Location = location;
+                pic.Anchor = AnchorStyles.None;
+                Controls.Add(pic);
                 Invalidate();
             }
         }
@@ -96,7 +98,7 @@ namespace GoHosts.ctl
             vlblControlHeight = Size.Height;
             e.Graphics.DrawRectangle(labelBorderPen, 0, 0, vlblControlWidth, vlblControlHeight);
             e.Graphics.FillRectangle(labelBackColorBrush, 0, 0, vlblControlWidth, vlblControlHeight);
-            e.Graphics.DrawString(_label, new Font("黑体", 10), fontBrush, vlblControlWidth / 2 - 30, vlblControlHeight / 2 + 40);
+            e.Graphics.DrawString(_msg, new Font("黑体", 10), fontBrush, vlblControlWidth / 2 - 30, vlblControlHeight / 2 + 40);
         }
 
 
@@ -129,8 +131,8 @@ namespace GoHosts.ctl
 
         public string Text
         {
-            get { return _label; }
-            set { _label = value; Invalidate(); }
+            get { return _msg; }
+            set { _msg = value; Invalidate(); }
         }
 
     }
