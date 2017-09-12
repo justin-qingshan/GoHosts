@@ -71,7 +71,7 @@ namespace GoHosts.util
 
 
         
-        public static bool CombineStr(string outputFile, List<string> inputFiles, Action<int> handler)
+        public static bool CombineStr(string outputFile, List<string> inputFiles, Action<int, int> handler)
         {
             if (string.IsNullOrEmpty(outputFile))
                 throw new ArgumentNullException("outputFile cannot be null.");
@@ -85,7 +85,7 @@ namespace GoHosts.util
                 foreach (string input in inputFiles)
                 {
                     index++;
-                    handler?.Invoke(index);
+                    handler(index, inputFiles.Count);
 
                     if (string.IsNullOrEmpty(input) || !File.Exists(input))
                         continue;

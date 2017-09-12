@@ -4,7 +4,6 @@ using System;
 using System.ComponentModel;
 using System.IO;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GoHosts
@@ -12,11 +11,9 @@ namespace GoHosts
     public partial class Form1 : Form
     {
         
-        BackgroundWorker background = new BackgroundWorker();
+        BackgroundWorker bwork = new BackgroundWorker();
 
         SynchronizationContext context = null;
-        Loading loading = new Loading();
-
         public Form1()
         {
             InitializeComponent();
@@ -25,19 +22,19 @@ namespace GoHosts
         }
 
 
-        private void ShowLoading()
+        private void LoadingShow()
         {
-            loading.ShowLoading(this);
+            loading.Show(panel1);
         }
 
-        private void HideLoading()
+        private void LoadingHide()
         {
             loading.Hide();
         }
 
-        private void UpdateLoading(string str)
+        private void LoadingUpdate(string str)
         {
-            loading.LoadingMsg = str;
+            loading.Text = str;
         }
 
         private void UpdateInfo()
@@ -48,46 +45,54 @@ namespace GoHosts
             double size = Math.Round((double)info.Length / 1024, 2);
             Label_Size.Text = size + "KB";
             Label_Location.Text = Hosts.HOSTS_SYS.Replace('\\', '/');
+            
         }
 
 
         private void update_Click(object sender, EventArgs e)
         {
+            LoadingShow();
 
-            ShowLoading();
+            bwork.DoWork += HostsUtil.UpdateHosts;
+            bwork.RunWorkerAsync();
+            bwork.WorkerReportsProgress = true;
+            bwork.ProgressChanged += HostsUpdateProgress;
+        }
 
-            Task task = new Task(()=>
+        
+
+
+        private void HostsUpdateProgress(object sender, ProgressChangedEventArgs e)
+        {
+            Tuple<UpdateHostsState, int, int> tuple = e.UserState as Tuple<UpdateHostsState, int, int>;
+
+            if (tuple.Item1 == UpdateHostsState.FINISH)
             {
-                //HostsUtil.UpdateHosts(null, null, null, () =>
-                //{
-                //    HideLoading();
-                //    UpdateInfo();
-                //    MessageBox.Show("更新完成");
-                //});
+                LoadingHide();
+                UpdateInfo();
+                MessageBox.Show("更新完成");
+                return;
+            }
 
-                context.Post((obj) =>
-                {
-                    UpdateLoading("下载hosts中");
-                }, "");
-                //string hosts = new Hosts().GetHostsFile();
-                Thread.Sleep(10000);
+            string name = "";
+            switch (tuple.Item1)
+            {
+                case UpdateHostsState.DOWNLOAD:
+                    name = "下载hosts源文件中";
+                    break;
+                case UpdateHostsState.COMBINE:
+                    name = "整合hosts文件中";
+                    break;
+                case UpdateHostsState.REPLACE:
+                    name = "替换系统hosts中";
+                    break;
+                case UpdateHostsState.CLEAN:
+                    name = "清理中";
+                    break;
+            }
 
-
-                context.Post((obj) =>
-                {
-                    UpdateLoading("整合hosts中");
-                }, "");
-                Thread.Sleep(5000);
-                //new Hosts().ReplaceSystemHosts(hosts);
-
-                context.Post((obj) => {
-                    HideLoading();
-                    UpdateInfo();
-                    MessageBox.Show("更新完成");
-                }, "");
-            });
-
-            task.Start();
+            name += (tuple.Item2 == 0 ? "" : ": " + tuple.Item2 + "/" + tuple.Item3);
+            LoadingUpdate(name);
         }
         
 

@@ -10,63 +10,74 @@ namespace GoHosts.ctl
         private string _loading_msg = "...";
         private int _pic_size = 32;
 
-        private Container components = new Container();
+        //private Container components = new Container();
         private PictureBox pic;
         private Label label;
-
-        private bool bg_painted = false;
+        
 
 
         public Loading()
         {
-            SetStyle(ControlStyles.Opaque, true);
+            //SetStyle(ControlStyles.Opaque, true);
+            SetStyle(
+                ControlStyles.UserPaint |
+                ControlStyles.AllPaintingInWmPaint |
+                ControlStyles.OptimizedDoubleBuffer |
+                ControlStyles.SupportsTransparentBackColor |
+                ControlStyles.Selectable |
+                ControlStyles.ResizeRedraw, 
+                true);
+
             CreateControl();
             DrawPicAndLabel();
         }
 
 
-        public void ShowLoading(Form form)
+        public void ShowLoading(Control parent)
         {
             try
             {
                 CreateControl();
-                form.Controls.Add(this);
+                parent.Controls.Add(this);
+                Parent = parent;
                 Dock = DockStyle.Fill;
+                BackColor = Color.Transparent;
                 BringToFront();
                 Enabled = true;
                 Visible = true;
-                bg_painted = false;
+                
+                //BackColor = Color.FromArgb(_alpha, parent.BackColor);
                 Refresh();
                 Invalidate();
             }
             catch { }
         }
 
-        protected override void OnPaint(PaintEventArgs e)
-        {
-            if (!bg_painted)
-            {
-                Color color = Color.FromArgb(_alpha, BackColor);
-                Pen border = new Pen(color, 0);
-                SolidBrush bruch = new SolidBrush(color);
+        //protected override void OnPaint(PaintEventArgs e)
+        //{
+        //    if (!bg_painted)
+        //    {
+        //        Color color = Color.FromArgb(_alpha, BackColor);
+        //        Pen border = new Pen(color, 0);
+        //        SolidBrush bruch = new SolidBrush(color);
 
-                //e.Graphics.Clear(BackColor);
-                e.Graphics.DrawRectangle(border, 0, 0, Size.Width, Size.Height);
-                e.Graphics.FillRectangle(bruch, 0, 0, Size.Width, Size.Height);
-                bg_painted = true;
-            }
-           
-        }
+                
+        //        e.Graphics.DrawRectangle(border, 0, 0, Size.Width, Size.Height);
+        //        e.Graphics.FillRectangle(bruch, 0, 0, Size.Width, Size.Height);
+        //        bg_painted = true;
+        //    }
+        //}
 
-        protected override CreateParams CreateParams
-        {
-            get
-            {
-                CreateParams cp = base.CreateParams;
-                cp.ExStyle |= 0x0000020;
-                return cp;
-            }
-        }
+
+        //protected override CreateParams CreateParams
+        //{
+        //    get
+        //    {
+        //        CreateParams cp = base.CreateParams;
+        //        cp.ExStyle |= 0x0000020;
+        //        return cp;
+        //    }
+        //}
 
 
 
@@ -103,7 +114,9 @@ namespace GoHosts.ctl
         protected override void OnInvalidated(InvalidateEventArgs e)
         {
             pic.Invalidate();
+            label.Text = _loading_msg;
             label.Invalidate();
+
             int height = CalcTotalHeight();
             label.Location = new Point(Location.X + (Width - label.Width) / 2,
                 Location.Y + (Height - height) / 2 + (height - label.Height));
@@ -113,15 +126,18 @@ namespace GoHosts.ctl
         }
 
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                if (!(components == null))
-                    components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+       
+
+
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        if (!(components == null))
+        //            components.Dispose();
+        //    }
+        //    base.Dispose(disposing);
+        //}
 
 
         private int CalcTotalWidth()
@@ -151,7 +167,11 @@ namespace GoHosts.ctl
         public string LoadingMsg
         {
             get { return _loading_msg; }
-            set { _loading_msg = value; label.Text = _loading_msg; Invalidate(); }
+            set
+            {
+                _loading_msg = value;
+                Invalidate();
+            }
         }
     }
 }

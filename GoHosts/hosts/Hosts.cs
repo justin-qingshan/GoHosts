@@ -37,7 +37,7 @@ namespace GoHosts.hosts
         }
 
 
-        public List<string> GetHostsFiles(Action<int> progress)
+        public List<string> GetHostsFiles(Action<int, int> progress)
         {
             if (Directory.Exists(FOLDER_TMP))
                 Directory.Delete(FOLDER_TMP, true);
@@ -63,11 +63,12 @@ namespace GoHosts.hosts
             foreach (string url in urls)
             {
                 index++;
+
+                progress(index, urls.Count);
+
                 string file = FOLDER_TMP + DateTime.Now.ToString("mm-ss") + ".txt";
                 if (HttpUtil.DownloadFile(url, file))
                     files.Add(file);
-
-                progress?.Invoke(index);
             }
 
             return files;
@@ -75,7 +76,7 @@ namespace GoHosts.hosts
 
 
         
-        public string CombineHosts(List<string> files, Action<int> progress)
+        public string CombineHosts(List<string> files, Action<int, int> progress)
         {
             string outputFile = FOLDER_TMP + "hosts";
             FileUtil.CombineStr(outputFile, files, progress);

@@ -35,11 +35,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.loading = new GoHosts.ctl.LoadingCtl();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // update
             // 
-            this.update.Location = new System.Drawing.Point(55, 163);
+            this.update.Location = new System.Drawing.Point(44, 157);
             this.update.Name = "update";
             this.update.Size = new System.Drawing.Size(75, 23);
             this.update.TabIndex = 0;
@@ -51,7 +54,7 @@
             // 
             this.Label_LastUpdate.AutoSize = true;
             this.Label_LastUpdate.Font = new System.Drawing.Font("Microsoft YaHei", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_LastUpdate.Location = new System.Drawing.Point(102, 8);
+            this.Label_LastUpdate.Location = new System.Drawing.Point(96, 7);
             this.Label_LastUpdate.Name = "Label_LastUpdate";
             this.Label_LastUpdate.Size = new System.Drawing.Size(100, 16);
             this.Label_LastUpdate.TabIndex = 2;
@@ -61,7 +64,7 @@
             // 
             this.Label_Size.AutoSize = true;
             this.Label_Size.Font = new System.Drawing.Font("Microsoft YaHei", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_Size.Location = new System.Drawing.Point(102, 23);
+            this.Label_Size.Location = new System.Drawing.Point(96, 22);
             this.Label_Size.Name = "Label_Size";
             this.Label_Size.Size = new System.Drawing.Size(61, 16);
             this.Label_Size.TabIndex = 2;
@@ -70,7 +73,7 @@
             // Label_Location
             // 
             this.Label_Location.AutoSize = true;
-            this.Label_Location.Location = new System.Drawing.Point(102, 40);
+            this.Label_Location.Location = new System.Drawing.Point(96, 39);
             this.Label_Location.Name = "Label_Location";
             this.Label_Location.Size = new System.Drawing.Size(80, 13);
             this.Label_Location.TabIndex = 3;
@@ -79,7 +82,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 9);
+            this.label1.Location = new System.Drawing.Point(3, 8);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(91, 13);
             this.label1.TabIndex = 4;
@@ -88,7 +91,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(11, 24);
+            this.label2.Location = new System.Drawing.Point(5, 23);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(92, 13);
             this.label2.TabIndex = 4;
@@ -97,29 +100,49 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(11, 40);
+            this.label3.Location = new System.Drawing.Point(5, 39);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(92, 13);
             this.label3.TabIndex = 4;
             this.label3.Text = "hosts文件位置：";
             // 
+            // loading
+            // 
+            this.loading.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.loading.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.loading.Location = new System.Drawing.Point(0, 0);
+            this.loading.Name = "loading";
+            this.loading.Size = new System.Drawing.Size(449, 300);
+            this.loading.TabIndex = 5;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.loading);
+            this.panel1.Controls.Add(this.update);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.Label_LastUpdate);
+            this.panel1.Controls.Add(this.Label_Size);
+            this.panel1.Controls.Add(this.Label_Location);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = this.Size;
+            this.panel1.TabIndex = 5;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(402, 261);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.Label_Location);
-            this.Controls.Add(this.Label_Size);
-            this.Controls.Add(this.Label_LastUpdate);
-            this.Controls.Add(this.update);
+            this.ClientSize = new System.Drawing.Size(449, 300);
+            this.Controls.Add(this.panel1);
             this.Name = "Form1";
             this.Text = "GoHosts";
             this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -132,6 +155,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Panel panel1;
+        private ctl.LoadingCtl loading;
     }
 }
 
