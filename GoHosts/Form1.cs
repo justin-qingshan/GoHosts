@@ -2,6 +2,7 @@
 using GoHosts.hosts;
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
@@ -45,7 +46,6 @@ namespace GoHosts
             double size = Math.Round((double)info.Length / 1024, 2);
             Label_Size.Text = size + "KB";
             Label_Location.Text = Hosts.HOSTS_SYS.Replace('\\', '/');
-            
         }
 
 
@@ -100,6 +100,14 @@ namespace GoHosts
         {
             if (loading != null && loading.Visible)
                 loading.Invalidate();
+        }
+
+        private void Label_Location_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(Label_Location.Text))
+                return;
+
+            Process.Start("explorer.exe", Path.GetDirectoryName(Label_Location.Text));
         }
     }
 }

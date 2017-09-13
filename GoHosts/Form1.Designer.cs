@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.update = new System.Windows.Forms.Button();
             this.Label_LastUpdate = new System.Windows.Forms.Label();
             this.Label_Size = new System.Windows.Forms.Label();
@@ -73,11 +74,14 @@
             // Label_Location
             // 
             this.Label_Location.AutoSize = true;
+            this.Label_Location.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Label_Location.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Label_Location.Location = new System.Drawing.Point(96, 39);
             this.Label_Location.Name = "Label_Location";
             this.Label_Location.Size = new System.Drawing.Size(80, 13);
             this.Label_Location.TabIndex = 3;
             this.Label_Location.Text = "Label_Location";
+            this.Label_Location.Click += new System.EventHandler(this.Label_Location_Click);
             // 
             // label1
             // 
@@ -106,15 +110,6 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "hosts文件位置：";
             // 
-            // loading
-            // 
-            this.loading.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.loading.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.loading.Location = new System.Drawing.Point(0, 0);
-            this.loading.Name = "loading";
-            this.loading.Size = new System.Drawing.Size(449, 300);
-            this.loading.TabIndex = 5;
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.loading);
@@ -131,12 +126,23 @@
             this.panel1.Size = this.Size;
             this.panel1.TabIndex = 5;
             // 
+            // loading
+            // 
+            this.loading.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.loading.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.loading.Location = new System.Drawing.Point(0, 0);
+            this.loading.Name = "loading";
+            this.loading.Size = new System.Drawing.Size(449, 300);
+            this.loading.TabIndex = 5;
+            this.loading.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(449, 300);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "GoHosts";
             this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
