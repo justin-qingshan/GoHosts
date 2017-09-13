@@ -35,48 +35,49 @@ namespace GoHosts
 
             using (BackgroundWorker bwork = new BackgroundWorker())
             {
-                bwork.DoWork += HostsUtil.UpdateHosts;
+                bwork.DoWork += delegate(object s, DoWorkEventArgs ea) 
+                {
+                    HostsUtil.UpdateHosts(bwork);
+                };
                 bwork.RunWorkerAsync();
                 bwork.WorkerReportsProgress = true;
-                bwork.ProgressChanged += HostsUpdateProgress;
+                bwork.ProgressChanged += delegate (object s, ProgressChangedEventArgs ea)
+                {
+                    Tuple<UpdateHostsState, int, int> tuple = ea.UserState as Tuple<UpdateHostsState, int, int>;
+
+                    if (tuple.Item1 == UpdateHostsState.FINISH)
+                    {
+                        LoadingHide();
+                        UpdateInfo();
+                        MessageBox.Show(this, "Update Finished!", "Update Hosts");
+                        return;
+                    }
+
+                    string name = "";
+                    switch (tuple.Item1)
+                    {
+                        case UpdateHostsState.DOWNLOAD:
+                            name = "下载hosts源文件中";
+                            break;
+                        case UpdateHostsState.COMBINE:
+                            name = "整合hosts文件中";
+                            break;
+                        case UpdateHostsState.REPLACE:
+                            name = "替换系统hosts中";
+                            break;
+                        case UpdateHostsState.CLEAN:
+                            name = "清理中";
+                            break;
+                    }
+
+                    name += (tuple.Item2 == 0 ? "" : ": " + tuple.Item2 + "/" + tuple.Item3);
+                    LoadingUpdate(name);
+                };
             }
         }
 
         
-
-
-        private void HostsUpdateProgress(object sender, ProgressChangedEventArgs e)
-        {
-            Tuple<UpdateHostsState, int, int> tuple = e.UserState as Tuple<UpdateHostsState, int, int>;
-
-            if (tuple.Item1 == UpdateHostsState.FINISH)
-            {
-                LoadingHide();
-                UpdateInfo();
-                MessageBox.Show(this, "Update Finished!", "Update Hosts");
-                return;
-            }
-
-            string name = "";
-            switch (tuple.Item1)
-            {
-                case UpdateHostsState.DOWNLOAD:
-                    name = "下载hosts源文件中";
-                    break;
-                case UpdateHostsState.COMBINE:
-                    name = "整合hosts文件中";
-                    break;
-                case UpdateHostsState.REPLACE:
-                    name = "替换系统hosts中";
-                    break;
-                case UpdateHostsState.CLEAN:
-                    name = "清理中";
-                    break;
-            }
-
-            name += (tuple.Item2 == 0 ? "" : ": " + tuple.Item2 + "/" + tuple.Item3);
-            LoadingUpdate(name);
-        }
+        
         
 
         private void Form1_SizeChanged(object sender, EventArgs e)
@@ -104,23 +105,18 @@ namespace GoHosts
             LoadingShow();
             using(BackgroundWorker bwork = new BackgroundWorker())
             {
-                bwork.RunWorkerCompleted += Restore_Finished;
-                bwork.DoWork += Restore_Work;
+                bwork.RunWorkerCompleted += delegate(object obj, RunWorkerCompletedEventArgs ea)
+                {
+                    LoadingHide();
+                    UpdateInfo();
+                    MessageBox.Show(this, "Restore Finished!", "Restore Hosts");
+                };
+                bwork.DoWork += delegate(object obj, DoWorkEventArgs ea)
+                {
+                    HostsUtil.RestoreDefaultHosts();
+                };
                 bwork.RunWorkerAsync();
             }
-        }
-
-        private void Restore_Work(object sender, DoWorkEventArgs e)
-        {
-            HostsUtil.RestoreDefaultHosts();
-        }
-
-        private void Restore_Finished(object sender, RunWorkerCompletedEventArgs e)
-        {
-            LoadingHide();
-            UpdateInfo();
-            MessageBox.Show(this, "Restore Finished!", "Restore Hosts");
-
         }
 
         private void LoadingShow()

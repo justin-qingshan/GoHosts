@@ -8,10 +8,8 @@ namespace GoHosts.hosts
     public class HostsUtil
     {
 
-        public static void UpdateHosts(object sender, DoWorkEventArgs e)
+        public static void UpdateHosts(BackgroundWorker bwork)
         {
-            BackgroundWorker bwork = sender as BackgroundWorker;
-
             Hosts hosts = new Hosts();
             List<string> files = hosts.GetHostsFiles((index, total) =>
             {
