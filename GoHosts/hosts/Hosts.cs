@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Diagnostics;
+using System.Threading;
 
 namespace GoHosts.hosts
 {
@@ -116,6 +118,45 @@ namespace GoHosts.hosts
         {
             return new FileInfo(HOSTS_SYS);
         }
+
+
+
+        public bool ClearDNS()
+        {
+            ProcessStartInfo start = new ProcessStartInfo();
+            start.CreateNoWindow = true;
+            start.UseShellExecute = false;
+            start.FileName = "ipconfig";
+            start.Arguments = "/flushdns";
+
+            Process.Start(start).WaitForExit();
+            return true;
+        }
+
+
+        public string CreateDefaultHosts()
+        {
+            string tmpHosts = FOLDER_TMP + "hosts";
+            if (!Directory.Exists(FOLDER_TMP))
+                Directory.CreateDirectory(FOLDER_TMP);
+
+            FileStream fileStream = new FileStream(tmpHosts, FileMode.OpenOrCreate);
+            StreamWriter writer = new StreamWriter(fileStream);
+            try
+            {
+                string str = "127.0.0.1 localhost";
+                writer.WriteLine(str);
+                writer.Flush();
+                return tmpHosts;
+            }
+            catch
+            {
+                return null;
+            }
+            finally { writer.Close(); }
+        }
+
+
 
     }
 }

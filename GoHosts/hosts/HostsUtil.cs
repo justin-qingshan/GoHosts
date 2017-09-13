@@ -36,6 +36,25 @@ namespace GoHosts.hosts
             bwork.ReportProgress(1, Tuple.Create(UpdateHostsState.FINISH, 0, 0));
         }
 
+
+        public static void ClearDNSCache()
+        {
+            new Hosts().ClearDNS();
+        }
+
+
+        public static bool RestoreDefaultHosts()
+        {
+            Hosts hosts = new Hosts();
+            string path = hosts.CreateDefaultHosts();
+            if (path == null)
+                return false;
+
+            hosts.ReplaceSystemHosts(path);
+            hosts.CleanTmpFiles();
+            return true;
+        }
+
     }
 
 

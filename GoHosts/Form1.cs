@@ -1,42 +1,22 @@
-﻿using GoHosts.ctl;
-using GoHosts.hosts;
+﻿using GoHosts.hosts;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace GoHosts
 {
     public partial class Form1 : Form
     {
-        
-        BackgroundWorker bwork = new BackgroundWorker();
-
-        SynchronizationContext context = null;
         public Form1()
         {
             InitializeComponent();
-            context = SynchronizationContext.Current;
             UpdateInfo();
         }
 
 
-        private void LoadingShow()
-        {
-            loading.Show(panel1);
-        }
-
-        private void LoadingHide()
-        {
-            loading.Hide();
-        }
-
-        private void LoadingUpdate(string str)
-        {
-            loading.Text = str;
-        }
+        
 
         private void UpdateInfo()
         {
@@ -53,10 +33,13 @@ namespace GoHosts
         {
             LoadingShow();
 
-            bwork.DoWork += HostsUtil.UpdateHosts;
-            bwork.RunWorkerAsync();
-            bwork.WorkerReportsProgress = true;
-            bwork.ProgressChanged += HostsUpdateProgress;
+            using (BackgroundWorker bwork = new BackgroundWorker())
+            {
+                bwork.DoWork += HostsUtil.UpdateHosts;
+                bwork.RunWorkerAsync();
+                bwork.WorkerReportsProgress = true;
+                bwork.ProgressChanged += HostsUpdateProgress;
+            }
         }
 
         
@@ -70,7 +53,7 @@ namespace GoHosts
             {
                 LoadingHide();
                 UpdateInfo();
-                MessageBox.Show("更新完成");
+                MessageBox.Show(this, "Update Finished!", "Update Hosts");
                 return;
             }
 
@@ -108,6 +91,57 @@ namespace GoHosts
                 return;
 
             Process.Start("explorer.exe", Path.GetDirectoryName(Label_Location.Text));
+        }
+
+        private void btn_clearcache_Click(object sender, EventArgs e)
+        {
+            HostsUtil.ClearDNSCache();
+            MessageBox.Show(this, "Clear DNS Success!", "Clear DNS");
+        }
+
+        private void btn_restore_Click(object sender, EventArgs e)
+        {
+            LoadingShow();
+            using(BackgroundWorker bwork = new BackgroundWorker())
+            {
+                bwork.RunWorkerCompleted += Restore_Finished;
+                bwork.DoWork += Restore_Work;
+                bwork.RunWorkerAsync();
+            }
+        }
+
+        private void Restore_Work(object sender, DoWorkEventArgs e)
+        {
+            HostsUtil.RestoreDefaultHosts();
+        }
+
+        private void Restore_Finished(object sender, RunWorkerCompletedEventArgs e)
+        {
+            LoadingHide();
+            UpdateInfo();
+            MessageBox.Show(this, "Restore Finished!", "Restore Hosts");
+
+        }
+
+        private void LoadingShow()
+        {
+            loading.Show(panel1);
+        }
+
+        private void LoadingShow(string msg)
+        {
+            loading.Show(panel1);
+            loading.Text = msg;
+        }
+
+        private void LoadingHide()
+        {
+            loading.Hide();
+        }
+
+        private void LoadingUpdate(string str)
+        {
+            loading.Text = str;
         }
     }
 }

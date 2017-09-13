@@ -29,27 +29,76 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            this.btn_restore = new System.Windows.Forms.Button();
+            this.btn_clearcache = new System.Windows.Forms.Button();
             this.update = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.Label_LastUpdate = new System.Windows.Forms.Label();
             this.Label_Size = new System.Windows.Forms.Label();
             this.Label_Location = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.loading = new GoHosts.ctl.LoadingCtl();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
+            // btn_restore
+            // 
+            this.btn_restore.Location = new System.Drawing.Point(289, 75);
+            this.btn_restore.Name = "btn_restore";
+            this.btn_restore.Size = new System.Drawing.Size(75, 23);
+            this.btn_restore.TabIndex = 0;
+            this.btn_restore.Text = "Restore";
+            this.btn_restore.UseVisualStyleBackColor = true;
+            this.btn_restore.Click += new System.EventHandler(this.btn_restore_Click);
+            // 
+            // btn_clearcache
+            // 
+            this.btn_clearcache.Location = new System.Drawing.Point(164, 75);
+            this.btn_clearcache.Name = "btn_clearcache";
+            this.btn_clearcache.Size = new System.Drawing.Size(75, 23);
+            this.btn_clearcache.TabIndex = 0;
+            this.btn_clearcache.Text = "Clear DNS";
+            this.btn_clearcache.UseVisualStyleBackColor = true;
+            this.btn_clearcache.Click += new System.EventHandler(this.btn_clearcache_Click);
+            // 
             // update
             // 
-            this.update.Location = new System.Drawing.Point(44, 157);
+            this.update.Location = new System.Drawing.Point(45, 75);
             this.update.Name = "update";
             this.update.Size = new System.Drawing.Size(75, 23);
             this.update.TabIndex = 0;
             this.update.Text = "update";
             this.update.UseVisualStyleBackColor = true;
             this.update.Click += new System.EventHandler(this.update_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(5, 39);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(92, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "hosts文件位置：";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 8);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(91, 13);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "上次更新时间：";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(5, 23);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(92, 13);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "hosts文件大小：";
             // 
             // Label_LastUpdate
             // 
@@ -83,36 +132,10 @@
             this.Label_Location.Text = "Label_Location";
             this.Label_Location.Click += new System.EventHandler(this.Label_Location_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 8);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(91, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "上次更新时间：";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(5, 23);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(92, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "hosts文件大小：";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(5, 39);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(92, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "hosts文件位置：";
-            // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.loading);
+            this.panel1.Controls.Add(this.btn_restore);
+            this.panel1.Controls.Add(this.btn_clearcache);
             this.panel1.Controls.Add(this.update);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label1);
@@ -120,6 +143,7 @@
             this.panel1.Controls.Add(this.Label_LastUpdate);
             this.panel1.Controls.Add(this.Label_Size);
             this.panel1.Controls.Add(this.Label_Location);
+            this.panel1.Controls.Add(this.loading);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
@@ -132,7 +156,7 @@
             this.loading.Dock = System.Windows.Forms.DockStyle.Fill;
             this.loading.Location = new System.Drawing.Point(0, 0);
             this.loading.Name = "loading";
-            this.loading.Size = new System.Drawing.Size(449, 300);
+            this.loading.Size = new System.Drawing.Size(420, 117);
             this.loading.TabIndex = 5;
             this.loading.Visible = false;
             // 
@@ -140,7 +164,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(449, 300);
+            this.ClientSize = new System.Drawing.Size(420, 117);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
@@ -154,6 +178,8 @@
 
         #endregion
 
+        private System.Windows.Forms.Panel panel1;
+        private ctl.LoadingCtl loading;
         private System.Windows.Forms.Button update;
         private System.Windows.Forms.Label Label_LastUpdate;
         private System.Windows.Forms.Label Label_Size;
@@ -161,8 +187,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Panel panel1;
-        private ctl.LoadingCtl loading;
+        private System.Windows.Forms.Button btn_clearcache;
+        private System.Windows.Forms.Button btn_restore;
     }
 }
 
