@@ -108,6 +108,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="util\ActionUtil.cs" />
+    <Compile Include="util\DirectoryUtil.cs" />
     <Compile Include="util\FileUtil.cs" />
     <Compile Include="util\HttpUtil.cs" />
     <Compile Include="util\StringUtil.cs" />

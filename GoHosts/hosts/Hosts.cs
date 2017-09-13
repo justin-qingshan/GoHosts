@@ -1,9 +1,8 @@
 ﻿using GoHosts.util;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Diagnostics;
-using System.Threading;
+using System.IO;
 
 namespace GoHosts.hosts
 {
@@ -42,7 +41,7 @@ namespace GoHosts.hosts
         public List<string> GetHostsFiles(Action<int, int> progress)
         {
             if (Directory.Exists(FOLDER_TMP))
-                Directory.Delete(FOLDER_TMP, true);
+                DirectoryUtil.Delete(FOLDER_TMP, 3);
 
             Directory.CreateDirectory(FOLDER_TMP);
 
@@ -81,7 +80,7 @@ namespace GoHosts.hosts
         public string CombineHosts(List<string> files, Action<int, int> progress)
         {
             string outputFile = FOLDER_TMP + "hosts";
-            FileUtil.CombineStr(outputFile, files, progress);
+            FileUtil.CombineHosts(outputFile, files, progress);
 
             return outputFile;
         }
@@ -93,7 +92,7 @@ namespace GoHosts.hosts
                 return false;
 
             if (File.Exists(HOSTS_SYS_BAK))
-                File.Delete(HOSTS_SYS_BAK);
+                FileUtil.Delete(HOSTS_SYS_BAK);
 
             if (File.Exists(HOSTS_SYS))
                 File.Move(HOSTS_SYS, HOSTS_SYS_BAK);
@@ -107,7 +106,7 @@ namespace GoHosts.hosts
         public bool CleanTmpFiles()
         {
             if (Directory.Exists(FOLDER_TMP))
-                Directory.Delete(FOLDER_TMP, true);
+                DirectoryUtil.Delete(FOLDER_TMP, 3);
 
             return true;
         }
