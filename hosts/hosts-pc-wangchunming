@@ -1,5 +1,5 @@
 #Hosts-PC
-#Lst-update:2017-9-11
+#Lst-update:2017-9-16
 
 #LocalHost start
 127.0.0.1	localhost
@@ -12,6 +12,14 @@
 104.75.169.8  rfa.org
 23.77.9.10   tags.tiqcdn.com
 #RFA end
+
+#dongmanhuayuan start
+104.25.22.31 dmhy.org
+104.25.22.31 www.dmhy.org
+104.25.22.31 share.dmhy.org
+104.25.22.31 js.kiwihk.net
+104.25.22.31 bbs.dmhy.org
+#dongmanhuayuan end
 
 #Pcloud start
 74.120.8.14 pcloud.com
@@ -40,17 +48,17 @@
 23.219.135.150 p.typekit.net
 #resilio end
 
-#flipboard.com start
-52.84.219.201	s.flipboard.com
-52.84.218.201	cdn.flipboard.com
-52.84.219.201	ue.flipboard.com
-52.84.219.201	beacon.flipboard.com
-52.84.219.201	flipboard.com
-52.84.219.201    ue-test.flipboard.com
-52.84.219.201	fbprod.flipboard.com
-52.84.219.201	flipboard.helpshift.com
-52.84.219.201    about.flipboard.com
-#flipboard.com end
+# FlipBoard Start
+220.130.34.177	s.flipboard.com
+220.130.34.177	cdn.flipboard.com
+220.130.34.177	ue.flipboard.com
+220.130.34.177	beacon.flipboard.com
+220.130.34.177	flipboard.com
+220.130.34.177	fbprod.flipboard.com
+220.130.34.177	flipboard.helpshift.com
+220.130.34.177  ue-test.flipboard.com
+220.130.34.177  about.flipboard.com
+# FlipBoard End
 
 #akamai start
 72.246.103.10 a248.e.akamai.net
@@ -106,12 +114,12 @@
 #quora end
 
 # DuckDuckGo Start
-176.34.135.167	duckduckgo.com
-176.34.135.167	www.duckduckgo.com
-176.34.135.167	ac.duckduckgo.com
-176.34.135.167	icons.duckduckgo.com
-176.34.135.167	images.duckduckgo.com
-176.34.135.167	help.duckduckgo.com
+46.51.218.82	duckduckgo.com
+46.51.218.82	www.duckduckgo.com
+46.51.218.82	ac.duckduckgo.com
+46.51.218.82	icons.duckduckgo.com
+46.51.218.82	images.duckduckgo.com
+46.51.218.82	help.duckduckgo.com
 # DuckDuckGo End
 
 #boxun start
@@ -183,6 +191,85 @@
 207.178.0.72 m2.nsimg.net
 205.185.208.85 media.trafficjunky.net
 #pornhub end
+
+# Twitter Start
+#twitter封锁太严格了,暂无法恢复访问
+104.244.42.131	twitter.com
+104.244.42.131	www.twitter.com
+104.244.42.131	api.twitter.com
+104.244.42.131	caps.twitter.com
+104.244.42.131	mobile.twitter.com
+104.244.42.131  static-ads.twitter.com
+104.244.42.131	support.twitter.com
+104.244.42.131	upload.twitter.com
+104.244.42.131	tweetdeck.twitter.com
+104.244.42.131	syndication.twitter.com
+104.244.42.131	about.twitter.com
+104.244.42.131	blog.twitter.com
+104.244.42.131	betastream.twitter.com
+104.244.42.131	dev.twitter.com
+104.244.42.131	pic.twitter.com
+104.244.42.131	search.twitter.com
+104.244.42.131	status.twitter.com
+104.244.42.131	assets0.twitter.com
+104.244.42.131	assets1.twitter.com
+104.244.42.131	assets2.twitter.com
+104.244.42.131	assets3.twitter.com
+104.244.42.131	assets4.twitter.com
+104.244.42.131	static.twitter.com
+104.244.42.131	help.twitter.com
+104.244.42.131	ton.twitter.com
+104.244.42.131	s.twitter.com
+104.244.42.131	analytics.twitter.com
+104.244.42.131	urls-real.api.twitter.com
+104.244.42.131	userstream.twitter.com
+104.244.42.131	sitestream.twitter.com
+104.244.42.131	stream.twitter.com
+104.244.42.131	tdweb.twitter.com
+104.244.46.244	twitpic.com
+104.244.46.244	m1.twitpic.com
+104.244.46.244	web1.twitpic.com
+104.244.46.244	web10.twitpic.com
+104.244.46.244	web2.twitpic.com
+104.244.46.244	web3.twitpic.com
+104.244.46.244	web4.twitpic.com
+104.244.46.244	web5.twitpic.com
+104.244.46.244	web6.twitpic.com
+104.244.46.244	web7.twitpic.com
+104.244.46.244	web8.twitpic.com
+104.244.46.244	web9.twitpic.com
+117.18.237.70	a0.twimg.com
+117.18.237.70	a1.twimg.com
+117.18.237.70	a2.twimg.com
+117.18.237.70	a3.twimg.com
+117.18.237.70	a4.twimg.com
+117.18.237.70	a5.twimg.com
+117.18.237.70	abs.twimg.com
+117.18.237.70	g.twimg.com
+117.18.237.70	hca.twimg.com
+117.18.237.70	o.twimg.com
+117.18.237.70	p.twimg.com
+117.18.237.70	r.twimg.com
+117.18.237.70	ma.twimg.com
+117.18.237.70	pbs.twimg.com
+117.18.237.70	pbs-h2.twimg.com
+117.18.237.70	ton.twimg.com
+117.18.237.70	syndication.twimg.com
+117.18.237.70	syndication-o.twimg.com
+117.18.237.70	image-proxy-origin.twimg.com
+104.244.45.246	tweetdeck.com
+104.244.45.246	api.tweetdeck.com
+104.244.45.246	web.tweetdeck.com
+104.244.45.246	www.tweetdeck.com
+104.244.45.246	downloads.tweetdeck.com
+104.244.46.232	cdn.syndication.twitter.com
+104.244.46.232	apps.twitter.com
+104.244.46.232	debates.twitter.com
+185.45.5.47	    t.co
+104.244.43.77	platform.twitter.com
+104.244.46.71	video.twimg.com
+104.244.46.17	cdn.syndication.twimg.com
+# Twitter End
 
 #Dropbox Start
 162.125.248.1	dropbox.com
@@ -519,7 +606,7 @@
 180.222.100.23	tw.news.yahoo.com
 180.222.100.23	hk.news.yahoo.com
 106.10.178.36	yahoo.com
-50.18.192.250	duckduckgo-owned-server.yahoo.net
+46.51.218.82	duckduckgo-owned-server.yahoo.net
 116.214.11.98	tw.mobi.yahoo.com
 119.160.242.137	tw.mall.yahoo.com
 116.214.11.98	hk.mobi.yahoo.com
@@ -527,6 +614,7 @@
 27.123.200.67	search.yahoo.com
 27.123.200.67	hk.search.yahoo.com
 27.123.200.67	tw.search.yahoo.com
+180.222.100.25 beap.gemini.yahoo.com
 # Yahoo End
 
 #Doubleclick.net start
@@ -630,85 +718,6 @@
 149.154.167.32	flora.web.telegram.org
 149.154.167.32	flora-1.web.telegram.org
 #telegram end
-
-#Twitter Start
-104.244.42.131	twitter.com
-104.244.42.131	www.twitter.com
-104.244.42.131	api.twitter.com
-104.244.42.131	caps.twitter.com
-104.244.42.131	mobile.twitter.com
-104.244.42.131	support.twitter.com
-104.244.42.131	upload.twitter.com
-104.244.42.131	tweetdeck.twitter.com
-104.244.42.131	syndication.twitter.com
-104.244.42.131  static-ads.twitter.com
-104.244.42.131	about.twitter.com
-104.244.42.131	blog.twitter.com
-104.244.42.131	betastream.twitter.com
-104.244.42.131	dev.twitter.com
-104.244.42.131	pic.twitter.com
-104.244.42.131	search.twitter.com
-104.244.42.131	status.twitter.com
-104.244.42.131	assets0.twitter.com
-104.244.42.131	assets1.twitter.com
-104.244.42.131	assets2.twitter.com
-104.244.42.131	assets3.twitter.com
-104.244.42.131	assets4.twitter.com
-104.244.42.131	static.twitter.com
-104.244.42.131	help.twitter.com
-104.244.42.131	ton.twitter.com
-104.244.42.131	s.twitter.com
-104.244.42.131	analytics.twitter.com
-104.244.42.131	urls-real.api.twitter.com
-104.244.42.131	userstream.twitter.com
-104.244.42.131	sitestream.twitter.com
-104.244.42.131	stream.twitter.com
-104.244.42.131	tdweb.twitter.com
-104.244.46.244	twitpic.com
-104.244.46.244	m1.twitpic.com
-104.244.46.244	web1.twitpic.com
-104.244.46.244	web10.twitpic.com
-104.244.46.244	web2.twitpic.com
-104.244.46.244	web3.twitpic.com
-104.244.46.244	web4.twitpic.com
-104.244.46.244	web5.twitpic.com
-104.244.46.244	web6.twitpic.com
-104.244.46.244	web7.twitpic.com
-104.244.46.244	web8.twitpic.com
-104.244.46.244	web9.twitpic.com
-117.18.237.70   abs-0.twimg.com
-117.18.237.70	a0.twimg.com
-117.18.237.70	a1.twimg.com
-117.18.237.70	a2.twimg.com
-117.18.237.70	a3.twimg.com
-117.18.237.70	a4.twimg.com
-117.18.237.70	a5.twimg.com
-117.18.237.70	abs.twimg.com
-117.18.237.70	g.twimg.com
-117.18.237.70	hca.twimg.com
-117.18.237.70	o.twimg.com
-117.18.237.70	p.twimg.com
-117.18.237.70	r.twimg.com
-117.18.237.70	ma.twimg.com
-117.18.237.70	pbs.twimg.com
-117.18.237.70	pbs-h2.twimg.com
-117.18.237.70	ton.twimg.com
-117.18.237.70	syndication.twimg.com
-117.18.237.70	syndication-o.twimg.com
-117.18.237.70	image-proxy-origin.twimg.com
-104.244.45.246	tweetdeck.com
-104.244.45.246	api.tweetdeck.com
-104.244.45.246	web.tweetdeck.com
-104.244.45.246	www.tweetdeck.com
-104.244.45.246	downloads.tweetdeck.com
-104.244.46.232	cdn.syndication.twitter.com
-104.244.46.232	apps.twitter.com
-104.244.46.232	debates.twitter.com
-185.45.5.47   	t.co
-104.244.43.77	platform.twitter.com
-104.244.46.71	video.twimg.com
-104.244.46.17	cdn.syndication.twimg.com
-#Twitter End
 
 #doub start
 168.235.75.151 doub.io
@@ -845,6 +854,7 @@
 223.197.123.2  api.facebook.com
 223.197.123.2  secure.facebook.com
 223.197.123.2  zh-cn.facebook.com
+223.197.123.2  zh-hk.facebook.com
 223.197.123.2  login.facebook.com
 223.197.123.2  attachments.facebook.com
 223.197.123.2  touch.facebook.com
@@ -2418,6 +2428,7 @@
 223.197.123.1	source.developers.google.com
 223.197.123.1	cla.developers.google.com
 223.197.123.1	design.google.com
+223.197.123.1   services.googleapis.cn
 203.208.39.231 maps.google.cn
 203.208.39.231 www.google.cn
 203.208.39.231 ditu.google.cn
@@ -2832,6 +2843,7 @@
 223.197.123.1	a.android.com
 223.197.123.1	market.android.com
 223.197.123.1	play.google.com
+223.197.123.1   gsuite.google.com
 223.197.123.1	payments.google.com
 223.197.123.1	android.clients.google.com
 223.197.123.1	withgoogle.com
@@ -2978,7 +2990,7 @@
 223.197.123.1	khms0.googleapis.com
 223.197.123.1    panoramio.com.storage.googleapis.com
 223.197.123.1    static.panoramio.com.storage.googleapis.com
-223.197.123.1	khms1.googleapis.com
+223.197.123.1	 khms1.googleapis.com
 223.197.123.1    mclients.googleapis.com
 223.197.123.1    chromedriver.storage.googleapis.com
 223.197.123.1    patentimages.storage.googleapis.com
@@ -3041,8 +3053,6 @@
 223.197.123.1	googlemail.l.google.com
 223.197.123.1	inbox.google.com
 #Google end
-
-
 
 # gstatic Start
 223.197.123.1	geo0.ggpht.com
@@ -3108,16 +3118,16 @@
 223.197.123.1	content.googleapis.com
 223.197.123.1	khms0.googleapis.com
 223.197.123.1	khms1.googleapis.com
-223.197.123.1     mclients.googleapis.com
-223.197.123.1     chromedriver.storage.googleapis.com
-223.197.123.1     patentimages.storage.googleapis.com
-223.197.123.1     android.clients.googleapis.com
-223.197.123.1     clients.googleapis.com
-223.197.123.1     web.googleapis.com
-223.197.123.1     l.googleapis.com
-223.197.123.1     phone.googleapis.com
-223.197.123.1     i.googleapis.com
-223.197.123.1    storage.googlapis.com
+223.197.123.1   mclients.googleapis.com
+223.197.123.1   chromedriver.storage.googleapis.com
+223.197.123.1   patentimages.storage.googleapis.com
+223.197.123.1   android.clients.googleapis.com
+223.197.123.1   clients.googleapis.com
+223.197.123.1   web.googleapis.com
+223.197.123.1   l.googleapis.com
+223.197.123.1   phone.googleapis.com
+223.197.123.1   i.googleapis.com
+223.197.123.1   storage.googlapis.com
 223.197.123.1	maps.googleapis.com
 223.197.123.1	origin-commondatastorage.googleapis.com
 223.197.123.1	commondatastorage.googleapis.com
@@ -3126,6 +3136,7 @@
 223.197.123.1	redirector-bigcache.googleapis.com
 223.197.123.1	youtube.googleapis.com
 223.197.123.1	youtubei.googleapis.com
+223.197.123.1   chromesuggest-pa.googleapis.com
 223.197.123.1	mt0.googleapis.com
 223.197.123.1	mt1.googleapis.com
 223.197.123.1	mt2.googleapis.com
