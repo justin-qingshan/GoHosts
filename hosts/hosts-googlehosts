@@ -1,6 +1,6 @@
 # Copyright (c) 2017, googlehosts members.
 # https://github.com/googlehosts/hosts
-# Last updated: 2017-09-19
+# Last updated: 2017-09-20
 
 # This work is licensed under a CC BY-NC-SA 4.0 International License.
 # https://creativecommons.org/licenses/by-nc-sa/4.0/
@@ -2793,6 +2793,12 @@
 
 # Pixiv Start
 210.129.120.55	www.pixiv.net
+210.129.120.43	touch.pixiv.net
+210.140.131.146	source.pixiv.net
+210.129.120.41	accounts.pixiv.net
+210.140.131.147	imgaz.pixiv.net
+210.129.120.44	app-api.pixiv.net
+210.129.120.48	oauth.secure.pixiv.net
 # Pixiv End
 
 # Tumblr Start
@@ -2927,7 +2933,7 @@
 108.177.125.136	i3.ytimg.com
 108.177.125.136	i4.ytimg.com
 108.177.125.136	i9.ytimg.com
-216.58.195.238	i.ytimg.com
+64.15.118.37	i.ytimg.com
 216.58.217.174	s.ytimg.com
 64.15.118.42	www.youtube.com
 108.177.9.125	m.youtube.com
